@@ -6,10 +6,15 @@
   (:require [org.jclouds.blobstore2 :as bs]))
 
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Small app to save a log message to a blobstore with Clojure."
   [& args]
-  (def my-blobstore
+  ;; Normally we would use clojure.tools.cli to parse-opts but
+  ;; that's overkill for this example
+  (def container (nth args 0))
+  (def filename (nth args 1))
+  (def payload (nth args 2))
+  (def blobstore
     (bs/blobstore (env :blobstore-provider) (env :blobstore-identity) (env :blobstore-credential)))
-  (bs/create-container my-blobstore "hello")
-  (def my-blob (bs/blob "world.txt" :payload "Hi!"))
-  (bs/put-blob my-blobstore "hello" my-blob))
+  (def blob (bs/blob filename :payload payload))
+  (bs/create-container blobstore container)
+  (bs/put-blob blobstore container blob))

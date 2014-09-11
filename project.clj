@@ -1,5 +1,5 @@
 (defproject blobstore "0.1.0-SNAPSHOT"
-  :description "Small app to save a log message with Clojure"
+  :description "Small app to save a log message to a blobstore with Clojure"
   :url "https://github.com/everett-toews/blobstore-save-clj"
   :license {:name "Apache License, Version 2.0"
             :url "http://www.apache.org/licenses/LICENSE-2.0.html"}
